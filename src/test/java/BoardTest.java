@@ -127,11 +127,11 @@ public class BoardTest {
 
         // Verify the printed output for an empty board
         String expectedOutput =
-                "▁▁▁▁▁▁▁\r\n" +
-                "| | | |\r\n" +
-                "| | | |\r\n" +
-                "| | | |\r\n" +
-                "▔▔▔▔▔▔▔\r\n";
+                "▁▁▁▁▁▁▁" + System.lineSeparator() +
+                        "| | | |" + System.lineSeparator() +
+                        "| | | |" + System.lineSeparator() +
+                        "| | | |" + System.lineSeparator() +
+                        "▔▔▔▔▔▔▔" + System.lineSeparator();
 
         assertEquals(expectedOutput, outputStream.toString());
     }
