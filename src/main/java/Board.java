@@ -64,7 +64,29 @@ public class Board {
             }
         }
     }
-    public void print() {
 
+    /**
+     * Prints the current state of the TicTacToe board to the console.
+     * The board is displayed with borders, and each cell contains either a marker or a space if the cell is empty.
+     * The top and bottom borders consist of horizontal lines, and vertical lines separate each cell.
+     * The printed representation provides a visual representation of the current state of the game board.
+     */
+    public void print() {
+        // Print the top border
+        System.out.println("▁▁▁▁▁▁▁");
+
+        for (int i = 0; i < cells.length; i++) {
+            for (int j = 0; j < cells[i].length; j++) {
+                System.out.print("|");
+                // If the cell is empty, print a space, otherwise print the marker
+                System.out.print(cells[i][j] == '\u0000' ? " " : cells[i][j]);
+            }
+            // Print the row end
+            System.out.println("|");
+
+        }
+
+        // Print the bottom border
+        System.out.println("▔▔▔▔▔▔▔");
     }
 }

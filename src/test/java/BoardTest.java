@@ -1,5 +1,7 @@
 import org.junit.Test;
 import static org.junit.Assert.*;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 
 /**
  * Unit tests for the Board class.
@@ -101,5 +103,58 @@ public class BoardTest {
             }
         }
         assertFalse(atLeastOneNonEmptyCell);
+    }
+
+    /**
+     * Test the print method of the Board class to ensure it correctly prints the TicTacToe board with markers.
+     * It redirects System.out to capture the printed output and compares it with the expected board representation.
+     */
+    @Test
+    public void print_shouldPrintBoardCorrectly() {
+        // Redirect System.out to capture the printed output
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStream));
+
+        // Create a TicTacToe board and place some markers
+        Board board = new Board();
+        board.place(0, 0, 'X');
+        board.place(1, 1, 'O');
+        board.place(2, 2, 'X');
+
+        // Call the print method
+        board.print();
+
+        // Reset System.out
+        System.setOut(System.out);
+
+        // Verify the printed output
+        String expectedOutput = "▁▁▁▁▁▁▁\r\n|X| | |\r\n| |O| |\r\n| | |X|\r\n▔▔▔▔▔▔▔\r\n";
+
+        assertEquals(expectedOutput, outputStream.toString());
+
+    }
+
+    /**
+     * Test the print method of the Board class to ensure it does not print an empty TicTacToe board.
+     * It redirects System.out to capture the printed output and checks that the printed output is not empty.
+     */
+    @Test
+    public void print_shouldNotPrintEmptyBoard() {
+        // Redirect System.out to capture the printed output
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStream));
+
+        // Create an empty TicTacToe board
+
+        Board board = new Board();
+
+        // Call the print method
+        board.print();
+
+        // Reset System.out
+        System.setOut(System.out);
+
+        // Verify the printed output is not empty
+        assertNotEquals("", outputStream.toString());
     }
 }
