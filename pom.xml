@@ -15,7 +15,6 @@
     </properties>
 
     <dependencies>
-
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
@@ -25,7 +24,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>RELEASE</version>
+            <version>4.13.2</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
