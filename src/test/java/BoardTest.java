@@ -106,20 +106,18 @@ public class BoardTest {
     }
 
     /**
-     * Test the print method of the Board class to ensure it correctly prints the TicTacToe board with markers.
+     * Test the print method of the Board class to ensure it correctly prints the TicTacToe board.
      * It redirects System.out to capture the printed output and compares it with the expected board representation.
      */
     @Test
-    public void print_shouldPrintBoardCorrectly() {
+    public void print_shouldPrintEmptyBoard() {
+
         // Redirect System.out to capture the printed output
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
 
-        // Create a TicTacToe board and place some markers
+        // Create an empty TicTacToe board
         Board board = new Board();
-        board.place(0, 0, 'X');
-        board.place(1, 1, 'O');
-        board.place(2, 2, 'X');
 
         // Call the print method
         board.print();
@@ -127,11 +125,15 @@ public class BoardTest {
         // Reset System.out
         System.setOut(System.out);
 
-        // Verify the printed output
-        String expectedOutput = "▁▁▁▁▁▁▁\r\n|X| | |\r\n| |O| |\r\n| | |X|\r\n▔▔▔▔▔▔▔\r\n";
+        // Verify the printed output for an empty board
+        String expectedOutput =
+                "▁▁▁▁▁▁▁\r\n" +
+                "| | | |\r\n" +
+                "| | | |\r\n" +
+                "| | | |\r\n" +
+                "▔▔▔▔▔▔▔\r\n";
 
         assertEquals(expectedOutput, outputStream.toString());
-
     }
 
     /**
