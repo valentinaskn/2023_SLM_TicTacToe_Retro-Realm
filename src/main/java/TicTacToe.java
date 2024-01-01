@@ -24,6 +24,10 @@ public class TicTacToe {
         boolean gameEnded = false;
 
         while (!gameEnded) {
+            // Print the current player
+            System.out.println("Current Player: " + currentPlayer.getMarker());
+            // Print the board
+            board.print();
 
             boolean validInput = false;
             int row = -1;
