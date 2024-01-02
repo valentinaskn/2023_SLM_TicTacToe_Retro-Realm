@@ -1,0 +1,43 @@
+name: Generate JavaDoc
+
+# This workflow is triggered on push events to the main branch.
+# It sets up JDK 17, builds the project using Maven, generates JavaDoc,
+# and then uploads the JavaDoc as an artifact.
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Checkout the repository's code
+    - uses: actions/checkout@v3
+
+    # Set up JDK 17 using Temurin distribution.
+    # JDK 17 is required to build the Java project and generate JavaDoc.
+    - name: Set up JDK 17
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+
+    # Build the project with Maven.
+    # This step compiles the project and checks for any build errors.
+    - name: Build with Maven
+      run: mvn -B package --file pom.xml
+
+    # Generate JavaDoc using Maven.
+    # This step creates HTML documentation for the project's public interfaces.
+    - name: Generate JavaDoc
+      run: mvn javadoc:javadoc
+
+    # Upload the generated JavaDoc as an artifact.
+    # The JavaDoc is stored in the 'target/site/apidocs' directory.
+    # It is uploaded for easy access and can be used in other workflows or for documentation purposes.
+    - name: Upload JavaDoc
+      uses: actions/upload-artifact@v3
+      with:
+        name: JavaDoc
+        path: target/site/apidocs
