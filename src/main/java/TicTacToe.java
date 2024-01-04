@@ -19,8 +19,23 @@ public class TicTacToe {
      * @param args The command-line arguments.
      */
     public static void main(String[] args) {
-        TicTacToe game = new TicTacToe();
-        game.start();
+        Scanner scanner = new Scanner(System.in);
+        boolean continueGame = true;
+
+        while(continueGame) {
+            TicTacToe game = new TicTacToe();
+            game.start();
+
+            System.out.println("Do you want to play another game? (yes/no)");
+            String answer = scanner.nextLine();
+
+            if(answer.equalsIgnoreCase("no")) {
+                continueGame = false;
+            }
+        }
+
+        System.out.println("Game over!");
+        scanner.close();
     }
 
     private final Board board;
