@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 /**
  * A class that represents a Tic-Tac-Toe game.
@@ -80,16 +81,25 @@ public class TicTacToe {
 
             // Get valid input from user
             while (!validInput) {
-                System.out.print("row (0-2): ");
-                row = scanner.nextInt();
-                System.out.print("column (0-2): ");
-                col = scanner.nextInt();
+                while(true) {
+                    try {
+                        System.out.print("row (0-2): ");
+                        row = scanner.nextInt();
+                        System.out.print("column (0-2): ");
+                        col = scanner.nextInt();
+                        break;
+                    } catch (InputMismatchException e) {
+                        System.out.println("Invalid input. Use numbers (0-2).");
+                        scanner.nextLine(); //clear input
+                    }
+                }
                 if (row >= 0 && row < 3 && col >= 0 && col < 3 && board.isCellEmpty(row, col)) {
                     board.place(row, col, currentPlayer.getMarker());
                     validInput = true;
                 } else {
                     System.out.println("Invalid input. Try again.");
                 }
+
                 // Check for win or draw
                 if (hasWinner()) {
                     gameEnded = true;
