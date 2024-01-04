@@ -95,41 +95,38 @@ public class TicTacToe {
             int col;
 
             // Get valid input from user
-            while (!validInput) {
-                while(true) {
-                    try {
-                        System.out.print("row (0-2): ");
-                        row = scanner.nextInt();
-                        System.out.print("column (0-2): ");
-                        col = scanner.nextInt();
-                        break;
-                    } catch (InputMismatchException e) {
-                        System.out.println("Invalid input. Use numbers (0-2).");
-                        scanner.nextLine(); //clear input
+            while(!validInput) {
+                try {
+                    System.out.print("row (0-2): ");
+                    row = scanner.nextInt();
+                    System.out.print("column (0-2): ");
+                    col = scanner.nextInt();
+                    if (row >= 0 && row < 3 && col >= 0 && col < 3 && board.isCellEmpty(row, col)) {
+                        board.place(row, col, currentPlayer.getMarker());
+                        validInput = true;
+                    } else {
+                        System.out.println("Invalid input. Try again.");
                     }
+                } catch (InputMismatchException e) {
+                    System.out.println("Invalid input. Use numbers (0-2).");
+                    scanner.nextLine(); //clear input
                 }
-                if (row >= 0 && row < 3 && col >= 0 && col < 3 && board.isCellEmpty(row, col)) {
-                    board.place(row, col, currentPlayer.getMarker());
-                    validInput = true;
-                } else {
-                    System.out.println("Invalid input. Try again.");
-                }
+            }
 
-                // Check for win or draw
-                if (hasWinner()) {
-                    gameEnded = true;
-                    // Print the winner's board state
-                    System.out.println("Current Player: " + currentPlayer.getMarker());
-                    board.print();
-                    System.out.println("Player " + currentPlayer.getMarker() + " wins!");
-                } else if (board.isFull()) {
-                    gameEnded = true;
-                    board.print();
-                    System.out.println("The game ended in a draw!");
-                } else {
-                    // Switch the current player
-                    switchCurrentPlayer();
-                }
+            // Check for win or draw
+            if (hasWinner()) {
+                gameEnded = true;
+                // Print the winner's board state
+                System.out.println("Current Player: " + currentPlayer.getMarker());
+                board.print();
+                System.out.println("Player " + currentPlayer.getMarker() + " wins!");
+            } else if (board.isFull()) {
+                gameEnded = true;
+                board.print();
+                System.out.println("The game ended in a draw!");
+            } else {
+                // Switch the current player
+                switchCurrentPlayer();
             }
         }
     }
