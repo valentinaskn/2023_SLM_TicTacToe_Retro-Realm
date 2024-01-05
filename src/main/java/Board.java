@@ -73,7 +73,7 @@ public class Board {
      */
     public void print() {
         // Print the top border
-        System.out.println("▁▁▁▁▁▁▁");
+        System.out.println("-------");
 
         for (int i = 0; i < cells.length; i++) {
             for (int j = 0; j < cells[i].length; j++) {
@@ -87,6 +87,6 @@ public class Board {
         }
 
         // Print the bottom border
-        System.out.println("▔▔▔▔▔▔▔");
+        System.out.println("-------");
     }
 }

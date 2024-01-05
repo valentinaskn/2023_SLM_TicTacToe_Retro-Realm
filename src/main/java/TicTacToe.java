@@ -13,6 +13,7 @@ public class TicTacToe {
     private final Player player1;
     private final Player player2;
     private Player currentPlayer;
+    private final Board board;
 
     /**
      * The main method that starts the Tic-Tac-Toe game.
@@ -39,7 +40,7 @@ public class TicTacToe {
         scanner.close();
     }
 
-    private final Board board;
+
 
     /**
      * Gets the current player in the Tic-Tac-Toe game.
@@ -49,6 +50,7 @@ public class TicTacToe {
     public Player getCurrentPlayer() {
         return currentPlayer;
     }
+
     /**
      * Gets the game board.
      *
@@ -82,6 +84,8 @@ public class TicTacToe {
     public void start() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Tic Tac Toe Game Started!");
+        System.out.println("Instructions: To make a move, enter the row and column numbers when prompted. " +
+                "The top-left corner is row 0, column 0; the bottom-right corner is row 2, column 2.\n");
         boolean gameEnded = false;
 
         while (!gameEnded) {
