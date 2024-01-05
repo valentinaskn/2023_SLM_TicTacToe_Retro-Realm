@@ -1,3 +1,4 @@
+
 import org.junit.Test;
 import static org.junit.Assert.*;
 import java.io.ByteArrayOutputStream;
@@ -127,11 +128,11 @@ public class BoardTest {
 
         // Verify the printed output for an empty board
         String expectedOutput =
-                "▁▁▁▁▁▁▁" + System.lineSeparator() +
+                "-------" + System.lineSeparator() +
                         "| | | |" + System.lineSeparator() +
                         "| | | |" + System.lineSeparator() +
                         "| | | |" + System.lineSeparator() +
-                        "▔▔▔▔▔▔▔" + System.lineSeparator();
+                        "-------" + System.lineSeparator();
 
         assertEquals(expectedOutput, outputStream.toString());
     }
